@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link rel="stylesheet" href="course.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav">
+                <!-- Left side (Topics dropdown) -->
+                <li class="nav-item">
+                    <a href="#">Topics</a>
+                    <ul class="dropdown">
+                        <!-- Topics will be dynamically inserted here -->
+                    </ul>
+                </li>
+                
+                <!-- Center (Course Name) -->
+                <li class="nav-item course-name">
+                    <span id="course-name">Course</span>
+                </li>
+
+                <!-- Right side (Sign Out) -->
+                <li class="nav-item sign-out">
+                    <a href="login.html" id="sign-out-button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="video-container">
+            <!-- Videos will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const course = urlParams.get('course');
+            
+            const courseName = document.getElementById('course-name');
+            const videoContainer = document.querySelector('.video-container');
+            const dropdown = document.querySelector('.dropdown');
+
+            const courses = {
+                'ca-foundation': {
+                    title: 'CA Foundation',
+                    topics: {
+                        'Topic A': {
+                            'Subtopic A.1': ['videos/ACCRUED VS PREPAID EXPENSES!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/BILLS RECEIVABLE VS BILLS PAYABLE-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.3': ['videos/DEFERRED TAX ASSET VS DEFERRED TAX LIABILITY!!!!!!.mp4']
+                        },
+                        'Topic B': {
+                            'Subtopic A.1': ['videos/FIXED ASSET DEPRECIATION & AMORTIZATION-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/NO ACCOUNTING FEAR!!!.mp4'],
+                            'Subtopic A.3': ['videos/PROVISION VS RESERVE-PROMO VER!!!!!!.mp4']
+                        }
+                    }
+                },
+                'mpg': {
+                    title: 'MPG',
+                    topics: {
+                        'Topic A': {
+                            'Subtopic A.1': ['videos/ACCRUED VS PREPAID EXPENSES!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/BILLS RECEIVABLE VS BILLS PAYABLE-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.3': ['videos/DEPRECIATION - 5.mp4']
+                        },
+                        'Topic B': {
+                            'Subtopic A.1': ['videos/FIXED ASSET DEPRECIATION & AMORTIZATION-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/NO ACCOUNTING FEAR!!!.mp4'],
+                            'Subtopic A.3': ['videos/PROVISION VS RESERVE-PROMO VER!!!!!!.mp4']
+                        }
+                    }
+                }, 
+                'ca-degree': {
+                    title: 'CA Degree',
+                    topics: {
+                        'Topic A': {
+                            'Subtopic A.1': ['videos/ACCRUED VS PREPAID EXPENSES!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/BILLS RECEIVABLE VS BILLS PAYABLE-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.3': ['videos/DEFERRED TAX ASSET VS DEFERRED TAX LIABILITY!!!!!!.mp4']
+                        },
+                        'Topic B': {
+                            'Subtopic A.1': ['videos/FIXED ASSET DEPRECIATION & AMORTIZATION-PROMO VER!!!!!!.mp4'],
+                            'Subtopic A.2': ['videos/NO ACCOUNTING FEAR!!!.mp4'],
+                            'Subtopic A.3': ['videos/PROVISION VS RESERVE-PROMO VER!!!!!!.mp4']
+                        }
+                    }
+                }
+            };
+
+            function populateDropdown(course) {
+                const topics = courses[course].topics;
+                for (const topic in topics) {
+                    const topicItem = document.createElement('li');
+                    const topicLink = document.createElement('a');
+                    topicLink.href = '#';
+                    topicLink.textContent = topic;
+                    topicItem.appendChild(topicLink);
+
+                    const subtopicDropdown = document.createElement('ul');
+                    subtopicDropdown.classList.add('sub-dropdown');
+
+                    for (const subtopic in topics[topic]) {
+                        const subtopicItem = document.createElement('li');
+                        const subtopicLink = document.createElement('a');
+                        subtopicLink.href = '#';
+                        subtopicLink.textContent = subtopic;
+                        subtopicLink.dataset.videos = JSON.stringify(topics[topic][subtopic]);
+                        subtopicItem.appendChild(subtopicLink);
+                        subtopicDropdown.appendChild(subtopicItem);
+                    }
+
+                    topicItem.appendChild(subtopicDropdown);
+                    dropdown.appendChild(topicItem);
+                }
+            }
+
+            function showVideos(videoUrls) {
+                videoContainer.innerHTML = '';
+                videoUrls.forEach(url => {
+                    const video = document.createElement('video');
+                    video.width = 560;
+                    video.height = 315;
+                    video.controls = true;
+                    const source = document.createElement('source');
+                    source.src = url;
+                    source.type = 'video/mp4';
+                    video.appendChild(source);
+                    videoContainer.appendChild(video);
+                });
+            }
+
+            dropdown.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A' && event.target.dataset.videos) {
+                    const videoUrls = JSON.parse(event.target.dataset.videos);
+                    showVideos(videoUrls);
+                }
+            });
+
+            if (course && courses[course]) {
+                courseName.textContent = courses[course].title;
+                populateDropdown(course);
+            } else {
+                courseName.textContent = 'Unknown Course';
+            }
+        });
+    </script>
+</body>
+</html>

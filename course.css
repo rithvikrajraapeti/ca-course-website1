@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://www.incharge.org/wp-content/uploads/2020/07/Financial-Literacy-Education.jpg'); /* Add your background image here */
+    background-size: cover; /* Make sure the image covers the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-attachment: fixed; /* Make the background image fixed */
+}
+
+header {
+    background-color: #000;
+    padding: 1em 0;
+}
+
+nav .nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .nav-item {
+    position: relative;
+}
+
+nav .nav-item a, nav .nav-item span {
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+    display: block;
+}
+
+nav .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav .nav-item:hover .dropdown {
+    display: block;
+}
+
+nav .dropdown li {
+    position: relative;
+}
+
+nav .dropdown a {
+    padding: 1em;
+    width: 200px;
+}
+
+nav .sub-dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav .dropdown li:hover .sub-dropdown {
+    display: block;
+}
+
+nav .course-name {
+    flex-grow: 1;
+    text-align: center;
+}
+
+main {
+    padding: 3em;
+    text-align: center; /* Semi-transparent background for content */
+    border-radius: 15px;
+    max-width: 1000px;
+    margin: 2em auto;
+}
+
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.video-container video {
+    width: 900px; /* Adjust width as needed */
+    height: 490px; /* Adjust height as needed */
+    border: 2px solid #fff; /* Add a white border around the videos */
+    border-radius: 10px; /* Optional: Add border radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow effect */
+    transition: transform 0.2s ease-in-out; /* Optional: Add a smooth hover effect */
+}

@@ -20,7 +20,6 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install
-          npm run build  # Adjust as per your build script
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5

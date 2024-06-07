@@ -7,6 +7,9 @@
     "stripe": "^15.8.0"
   },
   "scripts": {
-    "test": "jest"
- }
+    "test": "node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }

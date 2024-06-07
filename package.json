@@ -5,11 +5,5 @@
     "express": "^4.19.2",
     "oracledb": "^6.5.1",
     "stripe": "^15.8.0"
-  },
-  "scripts": {
-    "test": "node src/db.js"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0"
   }
 }

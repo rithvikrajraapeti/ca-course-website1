@@ -7,7 +7,7 @@
     "stripe": "^15.8.0"
   },
   "scripts": {
-    "test": "node src/db.js, public/course.html"
+    "test": "node src/db.js"
   },
   "devDependencies": {
     "jest": "^29.7.0"

@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - master  # Adjust to your main branch name
 
 jobs:
   deploy:
@@ -11,14 +11,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Install dependencies and build
         run: |
           npm install
-      
+          npm run build  # Adjust as per your build script
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          ACCESS_TOKEN: ${{ secrets.GH_PAGES }}  # Use your secret here
-          BRANCH: gh-pages  # Replace with the branch you want to deploy to
-          FOLDER: public  # Replace with the folder where your built files are located
+          ACCESS_TOKEN: ${{ secrets.GH_PAGES }}
+          BRANCH: gh-pages  # Adjust if your deployment branch is different
+          FOLDER: dist  # Adjust to the folder where your built files are located

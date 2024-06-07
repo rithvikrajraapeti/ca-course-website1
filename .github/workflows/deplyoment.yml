@@ -1,29 +1,24 @@
-name: Deploy to GitHub Pages 1
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # Adjust to your main branch name
+      - master # Trigger the workflow on push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install dependencies and build
-        run: |
-          npm install
-
+        
+      - name: Build HTML and CSS
+        run: npm install && npm run build  # Replace with your build script if needed
+      
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           ACCESS_TOKEN: ${{ secrets.GH_PAGES }}
-          BRANCH: gh-pages  # Adjust if your deployment branch is different
-          FOLDER: dist  # Adjust to the folder where your built files are located
+          BRANCH: gh-pages  # Branch to deploy to
+          FOLDER: public   # Folder containing your built HTML and CSS files

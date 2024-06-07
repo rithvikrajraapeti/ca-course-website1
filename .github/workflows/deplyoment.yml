@@ -1,24 +1,23 @@
-name: Deploy to GitHub Pages
-
+name: Build and Deploy
 on:
   push:
     branches:
-      - master # Trigger the workflow on push to the main branch
-
+      - master
+permissions:
+  contents: write
 jobs:
-  deploy:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        
-      - name: Build HTML and CSS
-        run: npm install  # Replace with your build script if needed
-      
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          npm ci
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.GH_PAGES }}
-          BRANCH: gh-pages  # Branch to deploy to
-          FOLDER: public   # Folder containing your built HTML and CSS files
+          folder: public # The folder the action should deploy.

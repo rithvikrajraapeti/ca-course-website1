@@ -26,4 +26,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.GH_PAGES }}
           BRANCH: gh-pages  # Adjust if your deployment branch is different
-          FOLDER: dist  # Adjust to the folder where your built files are located
+          FOLDER: public  # Adjust to the folder where your built files are located

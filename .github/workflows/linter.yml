@@ -11,11 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: List files in the repository
+      run: ls -R
 
     - name: Super-Linter
       uses: docker://github/super-linter:latest
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VALIDATE_ALL_CODEBASE: false
         VALIDATE_JS: true
+        FILTER_REGEX_INCLUDE: '.*\.(js)$' # Include only JS files
+        FILTER_REGEX_EXCLUDE: '' # Exclude no files
+
+    - name: List files detected by linter
+      run: |
+        echo "Files detected by linter:"
+        find . -name "*.js"

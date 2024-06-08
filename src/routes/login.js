@@ -18,20 +18,20 @@ router.post('/', async (req, res) => {
       const course = result.rows[0][0]
       res.json({ success: true, course })
     } else {
-      res.json({ success: false })  // Missing semicolon
+      res.json({ success: false })
     }
   } catch (err) {
-    console.error(err)  // Missing semicolon
-    res.status(500).json({ error: 'Internal Server Error' })  // Missing semicolon
+    console.error(err)
+    res.status(500).json({ error: 'Internal Server Error' })
   } finally {
     if (connection) {
       try {
-        await connection.close()  // Missing semicolon
+        await connection.close()
       } catch (err) {
-        console.error(err)  // Missing semicolon
+        console.error(err)
       }
     }
   }
 })
 
-module.exports = router  // Missing semicolon
+module.exports = router

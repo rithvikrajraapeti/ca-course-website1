@@ -8,7 +8,7 @@ async function getConnection() {
       connectString: process.env.DB_CONNECTION_STRING
     })
   } catch (err) {
-    console.error('Error getting DB connection:', err)
+    console.error('Error getting DB connection:', err);
     throw err
   }
 }

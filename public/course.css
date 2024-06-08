@@ -98,6 +98,6 @@ main {
     height: 490px; /* Adjust height as needed */
     border: 2px solid #fff; /* Add a white border around the videos */
     border-radius: 10px; /* Optional: Add border radius for rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow effect */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 20%); /* Updated to use percentage notation for alpha */
     transition: transform 0.2s ease-in-out; /* Optional: Add a smooth hover effect */
 }

@@ -1,3 +1,4 @@
+/* Resetting styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,11 +10,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://www.incharge.org/wp-content/uploads/2020/07/Financial-Literacy-Education.jpg'); /* Add your background image here */
-    background-size: cover; /* Make sure the image covers the entire background */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-attachment: fixed; /* Make the background image fixed */
+    background-image: url('https://www.incharge.org/wp-content/uploads/2020/07/Financial-Literacy-Education.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
@@ -91,7 +92,7 @@ footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 40%); /* Updated to use percentage notation for alpha */
+    background-color: rgba(0, 0, 0, 0.4); /* Ensure correct modern notation */
     padding-top: 60px;
 }
 

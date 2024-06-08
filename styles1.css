@@ -22,10 +22,10 @@ main {
 }
 
 .form-container {
-    background-color: rgba(255, 255, 255, 0.9); 
+    background-color: rgba(255 255 255 / 90%); /* Updated to use modern color-function notation and percentage for alpha */
     padding: 2.5em; 
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0 0 0 / 10%); /* Updated to use modern color-function notation and percentage for alpha */
     width: 90%;
     max-width: 400px; 
     margin-right: 1em; 

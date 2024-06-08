@@ -42,8 +42,8 @@
             const course = urlParams.get('course');
             
             const courseName = document.getElementById('course-name');
-            const videoContainer = document.querySelector('.video-container');
             const dropdown = document.querySelector('.dropdown');
+            const videoContainer = document.querySelector('.video-container');
 
             const courses = {
                 'ca-foundation': {
@@ -93,29 +93,34 @@
                 }
             };
 
+            function createTopicItem(topic, subtopics) {
+                const topicItem = document.createElement('li');
+                const topicLink = document.createElement('a');
+                topicLink.href = '#';
+                topicLink.textContent = topic;
+                topicItem.appendChild(topicLink);
+
+                const subtopicDropdown = document.createElement('ul');
+                subtopicDropdown.classList.add('sub-dropdown');
+
+                subtopics.forEach(subtopic => {
+                    const subtopicItem = document.createElement('li');
+                    const subtopicLink = document.createElement('a');
+                    subtopicLink.href = '#';
+                    subtopicLink.textContent = subtopic;
+                    // Add more logic if needed for handling videos
+                    subtopicItem.appendChild(subtopicLink);
+                    subtopicDropdown.appendChild(subtopicItem);
+                });
+
+                topicItem.appendChild(subtopicDropdown);
+                return topicItem;
+            }
+
             function populateDropdown(course) {
                 const topics = courses[course].topics;
                 for (const topic in topics) {
-                    const topicItem = document.createElement('li');
-                    const topicLink = document.createElement('a');
-                    topicLink.href = '#';
-                    topicLink.textContent = topic;
-                    topicItem.appendChild(topicLink);
-
-                    const subtopicDropdown = document.createElement('ul');
-                    subtopicDropdown.classList.add('sub-dropdown');
-
-                    for (const subtopic in topics[topic]) {
-                        const subtopicItem = document.createElement('li');
-                        const subtopicLink = document.createElement('a');
-                        subtopicLink.href = '#';
-                        subtopicLink.textContent = subtopic;
-                        subtopicLink.dataset.videos = JSON.stringify(topics[topic][subtopic]);
-                        subtopicItem.appendChild(subtopicLink);
-                        subtopicDropdown.appendChild(subtopicItem);
-                    }
-
-                    topicItem.appendChild(subtopicDropdown);
+                    const topicItem = createTopicItem(topic, Object.keys(topics[topic]));
                     dropdown.appendChild(topicItem);
                 }
             }
@@ -136,8 +141,9 @@
             }
 
             dropdown.addEventListener('click', function(event) {
-                if (event.target.tagName === 'A' && event.target.dataset.videos) {
-                    const videoUrls = JSON.parse(event.target.dataset.videos);
+                if (event.target.tagName === 'A' && event.target.textContent in courses[course].topics) {
+                    const subtopics = courses[course].topics[event.target.textContent];
+                    const videoUrls = Object.values(subtopics).flat();
                     showVideos(videoUrls);
                 }
             });

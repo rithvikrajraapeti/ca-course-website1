@@ -15,6 +15,7 @@ body {
     background-repeat: no-repeat; /* Prevent the background image from repeating */
     background-attachment: fixed; /* Make the background image fixed */
 }
+
 header {
     background-color: #4CAF50;
     color: white;
@@ -90,7 +91,7 @@ footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 40%); /* Updated to use percentage notation for alpha */
     padding-top: 60px;
 }
 

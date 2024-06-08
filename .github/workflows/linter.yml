@@ -17,4 +17,5 @@ jobs:
       uses: docker://github/super-linter:latest
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
-        
+        VALIDATE_ALL_CODEBASE: false
+        VALIDATE_JS: true

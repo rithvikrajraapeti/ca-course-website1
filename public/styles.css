@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: center;
     align-items: center;
     height: 100vh;
     background-image: url('https://www.incharge.org/wp-content/uploads/2020/07/Financial-Literacy-Education.jpg'); 
@@ -13,22 +13,47 @@ body {
     background-attachment: fixed; 
 }
 
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.home-button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.home-button i {
+    margin-right: 0.5rem;
+}
+
 main {
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
 }
 
 .form-container {
-    background-color: rgba(255, 255, 255, 90%); /* Updated to use percentage notation for alpha */
-    padding: 2em; 
+    background-color: rgba(255 255 255 / 90%); 
+    padding: 2.5em; 
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 10%); /* Updated to use percentage notation for alpha */
+    box-shadow: 0 4px 8px rgba(0 0 0 / 10%); 
     width: 90%;
     max-width: 400px; 
-    margin-right: 6em; 
+    margin-right: 1em; 
     text-align: center;
 }
 
@@ -49,7 +74,7 @@ input[type="password"],
 select {
     width: calc(100% - 20px); 
     padding: 0.75em;
-    margin-bottom: 2.7em;
+    margin-bottom: 0.7em;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;

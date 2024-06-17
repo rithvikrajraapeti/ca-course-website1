@@ -19,6 +19,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_PAGES }}
         DISABLE_ERRORS: false
         VALIDATE_JAVASCRIPT_ES: true
+        VALIDATE_HTML: true
 
 
         

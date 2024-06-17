@@ -36,7 +36,7 @@ nav {
     padding: 0.5rem 1rem;
     background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0 0 0 10);
+    box-shadow: 0 4px 6px rgba(0 0 0 1000%);
     transition: background 0.3s ease, transform 0.3s ease;
 }
 

@@ -92,7 +92,7 @@ footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 40%); /* Correct modern notation */
+    background-color: rgba(0 0 0 40%); /* Correct modern notation */
     padding-top: 60px;
 }
 

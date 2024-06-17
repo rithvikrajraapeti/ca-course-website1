@@ -20,6 +20,7 @@ jobs:
         DISABLE_ERRORS: false
         VALIDATE_JAVASCRIPT_ES: true
         VALIDATE_HTML: true
+        VALIDATE_CSS: true
 
 
         

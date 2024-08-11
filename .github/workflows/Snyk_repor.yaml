@@ -1,16 +1,16 @@
-name: Check for API Keys
+name: Check for API Keys in JavaScript Files
 
 on:
   push:
     branches:
-      - master
+      - maste
   pull_request:
     branches:
       - master
 
 jobs:
-  scan-secrets:
-    name: Scan for API Keys and Secrets
+  scan-js-secrets:
+    name: Scan for API Keys in JavaScript Files
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +23,11 @@ jobs:
       - name: Authenticate Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
-      - name: Run Snyk to detect API keys
-        run: snyk code test --severity-threshold=high --json --sarif | tee snyk_report.sarif
+      - name: Find JavaScript Files
+        run: git ls-files '*.js' > js-files.txt
+
+      - name: Run Snyk on JavaScript Files
+        run: xargs -a js-files.txt snyk code test --severity-threshold=high --json --sarif | tee snyk_report.sarif
 
       - name: Upload Snyk Report
         uses: github/codeql-action/upload-sarif@v2

@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-      
 
 jobs:
   scan-js-secrets:
@@ -27,11 +26,13 @@ jobs:
       - name: Find JavaScript Files
         run: git ls-files '*.js' > js-files.txt
 
-      - name: Run Snyk on JavaScript Files
+      - name: Run Snyk on Each JavaScript File
         run: |
+          touch snyk_output.json
           while IFS= read -r file; do
-            snyk code test "$file" --severity-threshold=high --json >> snyk_output.json
-          done < js-files.txt
+            echo "Scanning $file..."
+            snyk code test "$file" --severity-threshold=high --json || exit 1
+          done < js-files.txt > snyk_output.json
         shell: bash
 
       - name: Convert JSON to SARIF

@@ -3,7 +3,7 @@ name: Check for API Keys in JavaScript Files
 on:
   push:
     branches:
-      - maste
+      - master
   pull_request:
     branches:
       - master

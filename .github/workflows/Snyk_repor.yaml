@@ -3,12 +3,10 @@ name: Check for API Keys
 on:
   push:
     branches:
-      - main
-      - 'feature/**'
+      - master
   pull_request:
     branches:
-      - main
-      - 'feature/**'
+      - master
 
 jobs:
   scan-secrets:

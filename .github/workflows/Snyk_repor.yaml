@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - master
+      
 
 jobs:
   scan-js-secrets:
@@ -27,7 +28,14 @@ jobs:
         run: git ls-files '*.js' > js-files.txt
 
       - name: Run Snyk on JavaScript Files
-        run: xargs -a js-files.txt snyk code test --severity-threshold=high --json --sarif | tee snyk_report.sarif
+        run: |
+          while IFS= read -r file; do
+            snyk code test "$file" --severity-threshold=high --json >> snyk_output.json
+          done < js-files.txt
+        shell: bash
+
+      - name: Convert JSON to SARIF
+        run: snyk-to-sarif snyk_output.json > snyk_report.sarif
 
       - name: Upload Snyk Report
         uses: github/codeql-action/upload-sarif@v2
